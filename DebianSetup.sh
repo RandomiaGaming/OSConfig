@@ -62,6 +62,16 @@ open "https://discord.com/api/download?platform=linux&format=deb"
 apt install ./discord.deb
 rm -f discord.deb
 
+# Install steam
+wget -O "/etc/apt/keyrings/steam.gpg" "https://repo.steampowered.com/steam/archive/stable/steam.gpg"
+tee /etc/apt/sources.list.d/steam-stable.list <<'EOF'
+deb [arch=amd64,i386 signed-by=/usr/share/keyrings/steam.gpg] https://repo.steampowered.com/steam/ stable steam
+deb-src [arch=amd64,i386 signed-by=/usr/share/keyrings/steam.gpg] https://repo.steampowered.com/steam/ stable steam
+EOF
+apt update
+apt install steam-launcher
+
 # Finally make sure everything is up to date and ready to go
 apt update
 apt upgrade
+apt autoremove
