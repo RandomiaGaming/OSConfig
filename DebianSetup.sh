@@ -34,6 +34,8 @@ apt install nasm
 apt install python3
 apt install nodejs
 apt install gdb
+
+# Install git
 apt install git
 
 # Install mono
