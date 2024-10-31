@@ -2,7 +2,9 @@
 # Initializes and sets up a new debian install.
 # Written by RandomiaGaming
 
-# Before any installations make sure the local package cache is up to date.
+# Before any installations make sure the local package cache is up to date and x86 packages are supported
+# Note that x64 will still be the default whenever possible
+sudo dpkg --add-architecture i386
 apt update
 
 # Install the best desktop environment
@@ -71,7 +73,27 @@ EOF
 apt update
 apt install steam-launcher
 
+# Install the best ultra-light text editor
+sudo apt install featherpad
+
+# Install our favorite C and C++ IDE CLion
+sudo apt install libfuse2
+echo Download ./JetbrainsToolbox.tar.gz then press Ctrl+C
+open "https://www.jetbrains.com/toolbox-app/"
+tar -xzf JetbrainsToolbox.tar.gz
+./JetbrainsToolbox/jetbrains-toolbox
+rm -f JetbrainsToolbox.tar.gz
+rm -fr JetbrainsToolbox
+
+
 # Finally make sure everything is up to date and ready to go
 apt update
 apt upgrade
 apt autoremove
+
+
+
+# SETTINGS TO CHANGE
+#
+# In input settings set the keyboard repeat rate to 30hrtz and the delay to 300ms
+# In input settings set the default num lock state to on
