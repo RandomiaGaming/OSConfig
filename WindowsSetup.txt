@@ -1,0 +1,26 @@
+Unpin Mail
+Unpin Edge
+Disable Task View Button
+Show Explorer Extensions
+Show Explorer Hidden Items
+Show Item Checkboxes
+Delete Edge Shortcut On Desktop
+Show System Files Explorer Options
+Wallpaper Solid Color
+Wallpaper Color #FF9696
+Desktop Auto Arrange Icons
+Enable Get Latest Updates As Soon As They Are Availible
+Decline Windows 11 If Prompted
+System Theme = Dark
+Accent Color = Storm
+UAC = Highest
+Theme Transparency Effects = OFF
+Taskbar News And Intrests = Turn Off
+
+Visual Studio:
+.net desktop
+C++
+MAUI + Xamarin
+Python
+NodeJs
+GameDev With Unity
