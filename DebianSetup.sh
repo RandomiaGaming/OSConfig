@@ -2,20 +2,28 @@
 # Initializes and sets up a new debian install.
 # Written by RandomiaGaming
 
-# Before any installations make sure the local package cache is up to date and x86 packages are supported
-# Note that x64 will still be the default whenever possible
-sudo dpkg --add-architecture i386
+# Update package cache
 apt update
 
-# Install the best desktop environment
+# Make sure x86 packages are supported
+# Note that x64 will still be the default whenever possible
+sudo dpkg --add-architecture i386
+
+# Install KDE Plasma (Desktop Shell)
 apt install kde-plasma-desktop
-dpkg-reconfigure sddm
-systemctl enable sddm
 apt install sddm-theme-breeze
 echo -e "[Theme]\nCurrent=breeze" > /etc/sddm.conf
 
-# Install our favorite terminal emulator Alacritty
+# Install Alacritty (Terminal)
 apt install alacritty
+
+# Install Dolphin (File Manager)
+apt install dolphin
+
+# Install Chrome (Web Browser)
+wget https://dl-ssl.google.com/linux/linux_signing_key.pub -O /tmp/google.pub
+
+
 
 # Install our favorite code editor VSCode
 apt-get install wget gpg
@@ -87,7 +95,6 @@ tar -xzf JetbrainsToolbox.tar.gz
 rm -f JetbrainsToolbox.tar.gz
 rm -fr JetbrainsToolbox
 
-
 # Finally make sure everything is up to date and ready to go
 apt update
 apt upgrade
@@ -99,3 +106,31 @@ apt autoremove
 #
 # In input settings set the keyboard repeat rate to 30hrtz and the delay to 300ms
 # In input settings set the default num lock state to on
+
+# GIT IS A PAIN IN THE ASS
+#
+# To avoid crying follow the steps below to set up your enviroment
+#
+# Run git config --list --show-origin to see any configs which are not default
+# It is safe to delete all the config files to get a fresh start
+# Then get yourself set up by running the following
+# git config --global user.name RandomiaGaming
+# git config --global user.email RandomiaGaming@gmail.com
+#
+# Now it's time to set up ssh authentication
+# Run ssh-keygen -t ed25519 -f ~/.ssh/GitHubSSH
+# Then upload ~/.ssh/GitHubSSH.pub to GitHub.com
+# Then add the following to ~/.ssh/config
+#
+# Host github
+#    HostName github.com
+#    User git
+#    IdentityFile ~/.ssh/GitHubSSH
+#    IdentitiesOnly yes
+#
+# Check the config with ssh github.com
+#
+# Next go to your repo and make sure the url is in the format:
+# git@github.com:RandomiaGaming/RepoNameHere.git
+#
+# Finally enjoy git
