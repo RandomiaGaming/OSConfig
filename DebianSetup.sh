@@ -14,6 +14,10 @@ apt install kde-plasma-desktop
 apt install sddm-theme-breeze
 echo -e "[Theme]\nCurrent=breeze" > /etc/sddm.conf
 
+# Setup KRunner as search
+kwriteconfig5 --file kwinrc --group ModifierOnlyShortcuts --key Meta "org.kde.krunner,/App,,toggleDisplay"
+qdbus org.kde.KWin /KWin reconfigure
+
 # Install Alacritty (Terminal)
 apt install alacritty
 
@@ -22,8 +26,6 @@ apt install dolphin
 
 # Install Chrome (Web Browser)
 wget https://dl-ssl.google.com/linux/linux_signing_key.pub -O /tmp/google.pub
-
-
 
 # Install our favorite code editor VSCode
 apt-get install wget gpg
@@ -122,13 +124,13 @@ apt autoremove
 # Then upload ~/.ssh/GitHubSSH.pub to GitHub.com
 # Then add the following to ~/.ssh/config
 #
-# Host github
+# Host github.com
 #    HostName github.com
 #    User git
 #    IdentityFile ~/.ssh/GitHubSSH
 #    IdentitiesOnly yes
 #
-# Check the config with ssh github.com
+# Check the config with ssh -T git@github.com
 #
 # Next go to your repo and make sure the url is in the format:
 # git@github.com:RandomiaGaming/RepoNameHere.git
