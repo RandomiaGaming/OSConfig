@@ -103,6 +103,7 @@ echo "your hostname" > /etc/hostname
 # Next enable network service and DNS service (optional)
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
+ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 
 # Next enable wifi service (optional)
 # You should only do this if you installed iwd with pacstrap earlier
@@ -231,5 +232,16 @@ echo -e "DHCP=yes" >> /etc/systemd/network/default.network
 
 
 
+# -- Setting the fastest mirrors (optional) --
+yay -S reflector
+sudo reflector --country "United States" --age 48 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+
+
+
 # -- Plasma Desktop Environment --
-sudo pacman -S xorg-server sddm plasma kde-applications-wayland plasma-wayland-session
+yay -S sddm plasma-desktop sddm-kcm plasma-workspace qt6-wayland
+sudo systemctl enable sddm
+echo -e "[Theme]" > /etc/sddm.conf
+echo -e "Current=breeze" >> /etc/sddm.conf
+sudo ln -sf /usr/lib/systemd/system/graphical.target /etc/systemd/system/default.target
